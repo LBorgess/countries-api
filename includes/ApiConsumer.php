@@ -2,6 +2,13 @@
 
 class ApiConsumer
 {
+    /**
+     * Método responsável por requerer os dados da API
+     * @param string $endpoint
+     * @param string $method
+     * @param array $post_fields
+     * @return void
+     */
     private function api($endpoint, $method = 'GET', $post_fields = [])
     {
         $curl = curl_init();
@@ -33,9 +40,23 @@ class ApiConsumer
         }
     }
 
+    /**
+     * Método responsável por obter todos os dados da API
+     * @return void
+     */
     public function get_all_countries()
-    {
-        // Dado de todos os países
+    {       
         return $this->api('all');
+    }
+
+    /**
+     * Método responsável por obter os dados de um determinado
+     * país da API
+     * @param string $country_name
+     * @return void
+     */
+    public function get_country($country_name)
+    {           
+        return $this->api("name/$country_name");
     }
 }
