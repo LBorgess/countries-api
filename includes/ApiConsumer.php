@@ -7,7 +7,6 @@ class ApiConsumer
      * @param string $endpoint
      * @param string $method
      * @param array $post_fields
-     * @return void
      */
     private function api($endpoint, $method = 'GET', $post_fields = [])
     {
@@ -42,21 +41,26 @@ class ApiConsumer
 
     /**
      * Método responsável por obter todos os dados da API
-     * @return void
      */
     public function get_all_countries()
-    {       
-        return $this->api('all');
+    {
+        $results  =  $this->api('all');
+        $coutries = [];
+        foreach ($results as $result) {
+            $coutries[] = $result['name']['common'];
+        }
+        sort($coutries);
+        return $coutries;
     }
 
     /**
      * Método responsável por obter os dados de um determinado
      * país da API
      * @param string $country_name
-     * @return void
      */
     public function get_country($country_name)
-    {           
+    {   
+        $country_name = str_replace(' ', '%20', $country_name);
         return $this->api("name/$country_name");
     }
 }
