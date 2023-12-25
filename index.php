@@ -21,6 +21,11 @@ switch ($route) {
         require_once 'app/home.php';
         require_once 'includes/footer.php';
         break;
+    case 'country':
+        require_once 'includes/header.php';
+        require_once 'app/country.php';
+        require_once 'includes/footer.php';
+        break;
     case '404':
         require_once 'includes/header.php';
         require_once 'app/404.php';
